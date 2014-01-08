@@ -15,6 +15,8 @@ Contact me
 If you have any questions, issues, feature requests, or just want to report
 your "success story", or maybe even say hi, please send an email to
 marcelog@gmail.com
+
+Also, checkout the [Complete PAGI/PAMI talk for the PHP Conference Argentina 2013](http://www.slideshare.net/mgornstein/phpconf-2013). Check the slide notes for the complete text :)
 -------------------------------------------------------------------------------
 PHP Versions
 ------------
@@ -45,13 +47,13 @@ Packagist URL: http://packagist.org/packages/marcelog/pami
 Available via PEAR
 ------------------
 You can now easily install PAMI by issuing:
-# pear channel-discover marcelog.pear.name
+# pear channel-discover pear.marcelog.name
 # pear install marcelog/PAMI
 
 or
 
-# pear install marcelog/PAMI-1.70.0
-just replace 1.70.0 by the release version you'd like to install :)
+# pear install marcelog/PAMI-1.70.1
+just replace 1.70.1 by the release version you'd like to install :)
 See: http://pear.marcelog.name/
 -------------------------------------------------------------------------------
 Available as PHAR
@@ -346,3 +348,6 @@ the JabberEvent, and the ScreenName in JabberAction.
 
 * Scot Opell for helping in debugging stream_get_line() in 5.3.9 and 5.3.10
 
+* Brian (wormling) for trying and fixing bugs on asyncagi
+
+* Henning Bragge for helping with newstate event and queues.
