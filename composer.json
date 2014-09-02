@@ -1,5 +1,5 @@
 {
-  "name": "marcelog/pami",
+  "name": "acos/pami",
   "type": "library",
   "description": "Asterisk Manager Interface (AMI) client for PHP, event driven, object oriented",
   "keywords": ["asterisk","ami","client","telephony","voip","event","action","manager","monitor"],
@@ -24,5 +24,8 @@
   },
   "require-dev": {
       "phpunit/phpunit": "~3.7"
+  },
+  "replace": {
+      "marcelog/pami": "self.version"
   }
 }
