@@ -64,21 +64,18 @@ abstract class ActionMessage extends OutgoingMessage
      * The ActionID can be at most 69 characters long, according to
      * {@link https://issues.asterisk.org/jira/browse/14847 Asterisk Issue 14847}.
      * 
-     * Therefore we'll throw an exception when the ActionID is too long.
+     * However, to support Annabel's own fork of Asterisk, we
+     * need to lift this requirement.
      *
      * @param $actionID The Action ID to have this action known by
      *
      * @return void
-     * @throws PAMIException When the ActionID is more then 69 characters long
+     * @throws PAMIException When the ActionID is empty
      */
     public function setActionID($actionID)
     {
         if (0 == strlen($actionID)) {
             throw new PAMIException('ActionID cannot be empty.');
-        }
-
-        if (strlen($actionID) > 69) {
-            throw new PAMIException('ActionID can be at most 69 characters long.');
         }
 
         $this->setKey('ActionID', $actionID);
