@@ -5,24 +5,25 @@
   convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
+  bootstrap="test/bootstrap.php"
 >
   <filter>
     <whitelist>
-      <directory suffix=".php">../src/mg/PAMI</directory>
+      <directory suffix=".php">src/mg/PAMI</directory>
     </whitelist>
   </filter>
   <testsuites>
     <testsuite name="Client">
-      <directory suffix=".php">client</directory>
+        <directory suffix=".php">test/client</directory>
     </testsuite>
     <testsuite name="Autoloader">
-      <directory suffix=".php">autoloader</directory>
+        <directory suffix=".php">test/autoloader</directory>
     </testsuite>
     <testsuite name="Actions">
-      <directory suffix=".php">actions</directory>
+        <directory suffix=".php">test/actions</directory>
     </testsuite>
     <testsuite name="Events">
-      <directory suffix=".php">events</directory>
+        <directory suffix=".php">test/events</directory>
     </testsuite>
   </testsuites>
 </phpunit>
