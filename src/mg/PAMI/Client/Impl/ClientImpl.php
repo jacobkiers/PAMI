@@ -445,11 +445,11 @@ class ClientImpl implements IClient
 	{
         $this->_logger = isset($options['logger']) ? $options['logger'] : null;
 	    $this->_host = $options['host'];
-		$this->_port = intval($options['port']);
+		$this->_port = isset($options['port']) ? intval($options['port']) : 5038;
 		$this->_user = $options['username'];
 		$this->_pass = $options['secret'];
-		$this->_cTimeout = $options['connect_timeout'];
-		$this->_rTimeout = $options['read_timeout'];
+		$this->_cTimeout = isset($options['connect_timeout']) ? $options['connect_timeout'] : 5;
+		$this->_rTimeout = isset($options['read_timeout']) ? $options['read_timeout'] : 5;
 		$this->_scheme = isset($options['scheme']) ? $options['scheme'] : 'tcp://';
 		$this->_eventListeners = array();
 		$this->_eventFactory = new EventFactoryImpl();
