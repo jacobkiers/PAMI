@@ -257,7 +257,7 @@ class ClientImpl implements IClient
 	{
 	    $msgs = $this->getMessages();
 	    foreach ($msgs as $aMsg) {
-    	    if ($this->_logger) {
+	    if ($this->_logger) {
        	        $this->_logger->debug(
     	        	'------ Received: ------ ' . "\n" . $aMsg . "\n\n"
     	        );
@@ -284,7 +284,7 @@ class ClientImpl implements IClient
                 $response = $this->findResponse($event);
                 $response->addEvent($event);
     	    }
-    	    if ($this->_logger) {
+            if ($this->_logger) {
        	        $this->_logger->debug('----------------');
     	    }
 	    }
@@ -318,7 +318,7 @@ class ClientImpl implements IClient
         foreach ($this->_eventListeners as $data) {
             $listener = $data[0];
             $predicate = $data[1];
-            if ($predicate !== null && !$predicate($message)) {
+            if (is_callable($predicate) && !call_user_func($predicate, $message)) {
                 continue;
             }
             if ($listener instanceof \Closure) {

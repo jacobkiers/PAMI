@@ -1,13 +1,13 @@
 <?php
 /**
- * Event triggered when renaming a channel.
+ * StopMixMonitor action message.
  *
  * PHP Version 5
  *
  * @category   Pami
  * @package    Message
- * @subpackage Event
- * @author     Marcelo Gornstein <marcelog@gmail.com>
+ * @subpackage Action
+ * @author     Matt Styles <mstyleshk@gmail.com>
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @version    SVN: $Id$
  * @link       http://marcelog.github.com/PAMI/
@@ -27,71 +27,44 @@
  * limitations under the License.
  *
  */
-namespace PAMI\Message\Event;
-
-use PAMI\Message\Event\EventMessage;
+namespace PAMI\Message\Action;
 
 /**
- * Event triggered when renaming a channel.
+ * StopMixMonitor action message.
  *
  * PHP Version 5
  *
  * @category   Pami
  * @package    Message
- * @subpackage Event
- * @author     Marcelo Gornstein <marcelog@gmail.com>
+ * @subpackage Action
+ * @author     Matt Styles <mstyleshk@gmail.com>
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class RenameEvent extends EventMessage
+class StopMixMonitorAction extends ActionMessage
 {
     /**
-     * Returns key: 'Privilege'.
+     * Sets MixMonitorID key.
      *
-     * @return string
+     * @param string $mix_monitor_id MixMonitorID to use.
+     *
+     * @return void
      */
-    public function getPrivilege()
+    public function setMixMonitorId($mix_monitor_id)
     {
-        return $this->getKey('Privilege');
+        $this->setKey('MixMonitorID', $mix_monitor_id);
     }
 
     /**
-     * Returns key: 'Channel'.
+     * Constructor.
      *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
-
-     /**
-     * Returns key: 'Oldname'.
+     * @param string $channel Channel on which to act.
      *
-     * @return string
+     * @return void
      */
-    public function getOldname()
+    public function __construct($channel)
     {
-        return $this->getKey('Oldname');
-    }
-
-   /**
-     * Returns key: 'Newname'.
-     *
-     * @return string
-     */
-    public function getNewname()
-    {
-        return $this->getKey('Newname');
-    }
-
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
+        parent::__construct('StopMixMonitor');
+        $this->setKey('Channel', $channel);
     }
 }

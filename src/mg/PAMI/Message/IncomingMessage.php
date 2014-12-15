@@ -43,12 +43,14 @@ abstract class IncomingMessage extends Message
 {
     /**
      * Holds original message.
+     *
      * @var string
      */
     protected $rawContent;
 
     /**
      * Holds original message as an array.
+     *
      * @var array
      */
     protected $rawEventArray = array();

@@ -73,7 +73,8 @@ class Test_Events extends \PHPUnit_Framework_TestCase
             'Agents', 'AgentsComplete', 'Agentlogoff', 'Agentlogin', 'AgentConnect',
             'DongleSMSStatus', 'FullyBooted', 'DongleShowDevicesComplete', 'DongleDeviceEntry',
             'DongleNewUSSDBase64', 'DongleNewUSSD', 'DongleUSSDStatus', 'DongleNewCUSD',
-            'DongleStatus', 'CEL', 'JabberEvent', 'Registry', 'UserEvent'
+            'DongleStatus', 'CEL', 'JabberEvent', 'Registry', 'UserEvent',
+            'ParkedCall', 'UnParkedCall', 'Link'
         );
         $eventTranslatedValues = array(
             'QueueMemberStatus' => array(
@@ -562,6 +563,7 @@ class Test_Events extends \PHPUnit_Framework_TestCase
             ),
             'Rename' => array(
                 'UniqueID' => 'UniqueID',
+                'Oldname' => 'Oldname',
                 'Newname' => 'Newname',
                 'Channel' => 'Channel',
                 'Privilege' => 'Privilege'
@@ -715,32 +717,66 @@ class Test_Events extends \PHPUnit_Framework_TestCase
         	    'X-vGSM-ME-State-Change-Reason' => 'X-vGSM-ME-State-Change-Reason',
         	    'X-vGSM-ME-Old-State' => 'X-vGSM-ME-Old-State',
         	    'X-vGSM-ME-State' => 'X-vGSM-ME-State',
-                ),
-                'CEL' => array(
-                    'AMAFlags' => 'AMAFlags',
-                    'AccountCode' => 'AccountCode',
-                    'AppData' => 'AppData',
-                    'Application' => 'Application',
-                    'CallerIDani' => 'CallerIDani',
-                    'CallerIDdnid' => 'CallerIDdnid',
-                    'CallerIDname' => 'CallerIDname',
-                    'CallerIDnum' => 'CallerIDnum',
-                    'CallerIDrdnis' => 'CallerIDrdnis',
-                    'Channel' => 'Channel',
-                    'Context' => 'Context',
-                    'Event' => 'Event',
-                    'EventName' => 'EventName',
-                    'EventTime' => 'EventTime',
-                    'Exten' => 'Exten',
-                    'Extra' => 'Extra',
-                    'LinkedID' => 'LinkedID',
-                    'Peer' => 'Peer',
-                    'PeerAccount' => 'PeerAccount',
-                    'Privilege' => 'Privilege',
-                    'Timestamp' => 'Timestamp',
-                    'UniqueID' => 'UniqueID',
-                    'Userfield' => 'Userfield',
-                ),
+            ),
+            'CEL' => array(
+                'AMAFlags' => 'AMAFlags',
+                'AccountCode' => 'AccountCode',
+                'AppData' => 'AppData',
+                'Application' => 'Application',
+                'CallerIDani' => 'CallerIDani',
+                'CallerIDdnid' => 'CallerIDdnid',
+                'CallerIDname' => 'CallerIDname',
+                'CallerIDnum' => 'CallerIDnum',
+                'CallerIDrdnis' => 'CallerIDrdnis',
+                'Channel' => 'Channel',
+                'Context' => 'Context',
+                'Event' => 'Event',
+                'EventName' => 'EventName',
+                'EventTime' => 'EventTime',
+                'Exten' => 'Exten',
+                'Extra' => 'Extra',
+                'LinkedID' => 'LinkedID',
+                'Peer' => 'Peer',
+                'PeerAccount' => 'PeerAccount',
+                'Privilege' => 'Privilege',
+                'Timestamp' => 'Timestamp',
+                'UniqueID' => 'UniqueID',
+                'Userfield' => 'Userfield',
+            ),
+            'ParkedCall' => array(
+                'Privilege' => 'Privilege',
+                'Parkinglot' => 'Parkinglot',
+                'From' => 'From',
+                'Timeout' => 'Timeout',
+                'ConnectedLineNum' => 'ConnectedLineNum',
+                'ConnectedLineName' => 'ConnectedLineName',
+                'Channel' => 'Channel',
+                'CallerIDNum' => 'CallerIDNum',
+                'CallerIDName' => 'CallerIDName',
+                'UniqueID' => 'UniqueID',
+                'Exten' => 'Exten'
+            ),
+            'UnParkedCall' => array(
+                'Privilege' => 'Privilege',
+                'Parkinglot' => 'Parkinglot',
+                'From' => 'From',
+                'ConnectedLineNum' => 'ConnectedLineNum',
+                'ConnectedLineName' => 'ConnectedLineName',
+                'Channel' => 'Channel',
+                'CallerIDNum' => 'CallerIDNum',
+                'CallerIDName' => 'CallerIDName',
+                'UniqueID' => 'UniqueID',
+                'Exten' => 'Exten'
+            ),
+            'Link' => array(
+                'Privilege' => 'Privilege',
+                'CallerID1' => 'CallerID1',
+                'CallerID2' => 'CallerID2',
+                'UniqueID1' => 'UniqueID1',
+                'UniqueID2' => 'UniqueID2',
+                'Channel1' => 'Channel1',
+                'Channel2' => 'Channel2'
+            ),
         );
         $eventGetters = array(
             'UserEvent' => array(
@@ -808,6 +844,8 @@ class Test_Events extends \PHPUnit_Framework_TestCase
         	    'X-vGSM-ME-Old-State' => 'OldState',
         	    'X-vGSM-ME-State' => 'State',
         	),
+            'ParkedCall' => array('Exten' => 'Extension'),
+            'UnParkedCall' => array('Exten' => 'Extension')
         );
         foreach ($eventNames as $eventName) {
             $this->_testEvent($eventName, $eventGetters, $eventValues[$eventName], $eventTranslatedValues);

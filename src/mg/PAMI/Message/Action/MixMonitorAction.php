@@ -1,13 +1,13 @@
 <?php
 /**
- * Event triggered when renaming a channel.
+ * MixMonitor action message.
  *
  * PHP Version 5
  *
  * @category   Pami
  * @package    Message
- * @subpackage Event
- * @author     Marcelo Gornstein <marcelog@gmail.com>
+ * @subpackage Action
+ * @author     Matt Styles <mstyleshk@gmail.com>
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @version    SVN: $Id$
  * @link       http://marcelog.github.com/PAMI/
@@ -27,71 +27,56 @@
  * limitations under the License.
  *
  */
-namespace PAMI\Message\Event;
-
-use PAMI\Message\Event\EventMessage;
+namespace PAMI\Message\Action;
 
 /**
- * Event triggered when renaming a channel.
+ * MixMonitor action message.
  *
  * PHP Version 5
  *
  * @category   Pami
  * @package    Message
- * @subpackage Event
- * @author     Marcelo Gornstein <marcelog@gmail.com>
+ * @subpackage Action
+ * @author     Matt Styles <mstyleshk@gmail.com>
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class RenameEvent extends EventMessage
+class MixMonitorAction extends ActionMessage
 {
     /**
-     * Returns key: 'Privilege'.
+     * Sets File key.
      *
-     * @return string
+     * @param string $file File to use.
+     *
+     * @return void
      */
-    public function getPrivilege()
+    public function setFile($file)
     {
-        return $this->getKey('Privilege');
+        $this->setKey('File', $file);
     }
 
     /**
-     * Returns key: 'Channel'.
+     * Sets Options key.
      *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
-
-     /**
-     * Returns key: 'Oldname'.
+     * @param string[] $options List of options to use.
      *
-     * @return string
+     * @return void
      */
-    public function getOldname()
+    public function setOptions(array $options)
     {
-        return $this->getKey('Oldname');
-    }
-
-   /**
-     * Returns key: 'Newname'.
-     *
-     * @return string
-     */
-    public function getNewname()
-    {
-        return $this->getKey('Newname');
+        $this->setKey('Options', implode('', $options));
     }
 
     /**
-     * Returns key: 'UniqueID'.
+     * Constructor.
      *
-     * @return string
+     * @param string $channel Channel on which to act.
+     *
+     * @return void
      */
-    public function getUniqueID()
+    public function __construct($channel)
     {
-        return $this->getKey('UniqueID');
+        parent::__construct('MixMonitor');
+        $this->setKey('Channel', $channel);
     }
 }

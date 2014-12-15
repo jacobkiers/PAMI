@@ -1,6 +1,6 @@
 <?php
 /**
- * Event triggered when an action CoreShowChannel is issued.
+ * Event triggered when a call is parked.
  *
  * PHP Version 5
  *
@@ -32,7 +32,7 @@ namespace PAMI\Message\Event;
 use PAMI\Message\Event\EventMessage;
 
 /**
- * Event triggered when an action CoreShowChannel is issued.
+ * Event triggered when a call is parked.
  *
  * PHP Version 5
  *
@@ -43,7 +43,7 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class CoreShowChannelEvent extends EventMessage
+class ParkedCallEvent extends EventMessage
 {
     /**
      * Returns key: 'Privilege'.
@@ -53,6 +53,56 @@ class CoreShowChannelEvent extends EventMessage
     public function getPrivilege()
     {
         return $this->getKey('Privilege');
+    }
+
+    /**
+     * Returns key: 'Parkinglot'.
+     *
+     * @return string
+     */
+    public function getParkinglot()
+    {
+        return $this->getKey('Parkinglot');
+    }
+
+    /**
+     * Returns key: 'From'.
+     *
+     * @return string
+     */
+    public function getFrom()
+    {
+        return $this->getKey('From');
+    }
+
+    /**
+     * Returns key: 'Timeout'.
+     *
+     * @return string
+     */
+    public function getTimeout()
+    {
+        return $this->getKey('Timeout');
+    }
+
+    /**
+     * Returns key: 'ConnectedLineNum'.
+     *
+     * @return string
+     */
+    public function getConnectedLineNum()
+    {
+        return $this->getKey('ConnectedLineNum');
+    }
+
+    /**
+     * Returns key: 'ConnectedLineName'.
+     *
+     * @return string
+     */
+    public function getConnectedLineName()
+    {
+        return $this->getKey('ConnectedLineName');
     }
 
     /**
@@ -66,87 +116,6 @@ class CoreShowChannelEvent extends EventMessage
     }
 
     /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
-
-    /**
-     * Returns key: 'Context'.
-     *
-     * @return string
-     */
-    public function getContext()
-    {
-        return $this->getKey('Context');
-    }
-
-    /**
-     * Returns key: 'Extension'.
-     *
-     * @return string
-     */
-    public function getExtension()
-    {
-        return $this->getKey('Extension');
-    }
-
-
-    /**
-     * Returns key: 'Priority'.
-     *
-     * @return string
-     */
-    public function getPriority()
-    {
-        return $this->getKey('Priority');
-    }
-
-    /**
-     * Returns key: 'ChannelState'.
-     *
-     * @return string
-     */
-    public function getChannelState()
-    {
-        return $this->getKey('ChannelState');
-    }
-
-    /**
-     * Returns key: 'ChannelStateDesc'.
-     *
-     * @return string
-     */
-    public function getChannelStateDesc()
-    {
-        return $this->getKey('ChannelStateDesc');
-    }
-
-    /**
-     * Returns key: 'Application'.
-     *
-     * @return string
-     */
-    public function getApplication()
-    {
-        return $this->getKey('Application');
-    }
-
-    /**
-     * Returns key: 'ApplicationData'.
-     *
-     * @return string
-     */
-    public function getApplicationData()
-    {
-        return $this->getKey('ApplicationData');
-    }
-
-    /**
      * Returns key: 'CallerIDNum'.
      *
      * @return string
@@ -157,42 +126,32 @@ class CoreShowChannelEvent extends EventMessage
     }
 
     /**
-     * Returns key: 'Duration'.
+     * Returns key: 'CallerIDName'.
      *
      * @return string
      */
-    public function getDuration()
+    public function getCallerIDName()
     {
-        return $this->getKey('Duration');
+        return $this->getKey('CallerIDName');
     }
 
     /**
-     * Returns key: 'AccountCode'.
+     * Returns key: 'UniqueID'.
      *
      * @return string
      */
-    public function getAccountCode()
+    public function getUniqueID()
     {
-        return $this->getKey('AccountCode');
+        return $this->getKey('UniqueID');
     }
 
     /**
-     * Returns key: 'BridgedChannel'.
+     * Returns key: 'Exten'.
      *
      * @return string
      */
-    public function getBridgedChannel()
+    public function getExtension()
     {
-        return $this->getKey('BridgedChannel');
-    }
-
-    /**
-     * Returns key: 'BridgedUniqueID'.
-     *
-     * @return string
-     */
-    public function getBridgedUniqueID()
-    {
-        return $this->getKey('BridgedUniqueID');
+        return $this->getKey('Exten');
     }
 }
