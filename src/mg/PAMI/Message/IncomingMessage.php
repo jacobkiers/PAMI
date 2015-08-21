@@ -48,6 +48,12 @@ abstract class IncomingMessage extends Message
     protected $rawContent;
 
     /**
+     * Metadata. Specific channel variables.
+     * @var string[]
+     */
+    protected $channelVariables;
+
+    /**
      * Serialize function.
      *
      * @return string[]
@@ -81,6 +87,33 @@ abstract class IncomingMessage extends Message
     }
 
     /**
+     * Returns the channel variables for all reported channels.
+     * https://github.com/marcelog/PAMI/issues/85
+     *
+     * The channel names will be lowercased.
+     *
+     * @return array
+     */
+    public function getAllChannelVariables()
+    {
+      return $this->channelVariables;
+    }
+
+    /**
+     * Returns the channel variables for the given channel.
+     * https://github.com/marcelog/PAMI/issues/85
+     *
+     * @param string $channel Channel name. If not given, will return variables
+     * for the "current" channel.
+     *
+     * @return array
+     */
+    public function getChannelVariables($channel = 'default')
+    {
+      return $this->channelVariables[strtolower($channel)];
+    }
+
+    /**
      * Constructor.
      *
      * @param string $rawContent Original message as received from ami.
@@ -90,6 +123,7 @@ abstract class IncomingMessage extends Message
     public function __construct($rawContent)
     {
         parent::__construct();
+        $this->channelVariables = array('default' => array());
         $this->rawContent = $rawContent;
         $lines = explode(Message::EOL, $rawContent);
         foreach ($lines as $line) {
@@ -97,7 +131,21 @@ abstract class IncomingMessage extends Message
             $name = strtolower(trim($content[0]));
             unset($content[0]);
             $value = isset($content[1]) ? trim(implode(':', $content)) : '';
-            $this->setKey($name, $value);
+            if(!strncmp($name, 'chanvariable', 12)) {
+                // https://github.com/marcelog/PAMI/issues/85
+                $matches = preg_match("/\(([^\)]*)\)/", $name, $captures);
+                $chanName = 'default';
+                if($matches > 0) {
+                    $chanName = $captures[1];
+                }
+                $content = explode('=', $value);
+                $name = strtolower(trim($content[0]));
+                unset($content[0]);
+                $value = isset($content[1]) ? trim(implode(':', $content)) : '';
+                $this->channelVariables[$chanName][$name] = $value;
+            } else {
+                $this->setKey($name, $value);
+            }
         }
     }
 }
